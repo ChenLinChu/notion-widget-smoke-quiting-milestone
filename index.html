@@ -9,7 +9,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
         :root {
-            --bg-color: black;
+            --bg-color: transparent;
             --dark-text-color: #fff;
             --light-text-color: #000;
         }
@@ -41,12 +41,14 @@
         .card .progress-container {
             display: flex;
             align-items: center;
-            width: 61.8vw;
+            width: 50%;
         }
 
         .card .progress-container .percentage {
-            width: 18%;
-            text-align: center;
+            width: 2rem;
+            padding-right: 0.5rem;
+            text-align: right;
+            font-size: 0.8rem;
         }
 
         .card .progress-container .bar-container {
@@ -62,23 +64,23 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 15%;
+            width: 0%;
             height: 100%;
             background-color: var(--dark-text-color);
         }
     </style>
 </head>
 <body>
-    <div class="text-container">
+    <div class="app">
         <p class="milestone-text" id="milestoneText"></p>
 
         <!-- Coughing and shortness of breath decrease. -->
         <div class="card">
             <p class="title">Coughing and shortness of breath decrease.</p>
             <div class="progress-container">
-                <div class="percentage">50%</div>
+                <div class="percentage" id="percentage_1"></div>
                 <div class="bar-container">
-                    <div class="bar"></div>
+                    <div class="bar" id="bar_1"></div>
                 </div>
             </div>
         </div>
@@ -87,9 +89,9 @@
         <div class="card">
             <p class="title">Risk of coronary heart disease is half than before.</p>
             <div class="progress-container">
-                <div class="percentage">50%</div>
+                <div class="percentage" id="percentage_2"></div>
                 <div class="bar-container">
-                    <div class="bar"></div>
+                    <div class="bar" id="bar_2"></div>
                 </div>
             </div>
         </div>
@@ -98,9 +100,9 @@
         <div class="card">
             <p class="title">Risk of cancers of the mouth, throat, and voice box (larynx) is half of someone who smokes.</p>
             <div class="progress-container">
-                <div class="percentage">50%</div>
+                <div class="percentage" id="percentage_3"></div>
                 <div class="bar-container">
-                    <div class="bar"></div>
+                    <div class="bar" id="bar_3"></div>
                 </div>
             </div>
         </div>
@@ -109,9 +111,9 @@
         <div class="card">
             <p class="title">Risk of lung cancer is half of someone who smokes.</p>
             <div class="progress-container">
-                <div class="percentage">50%</div>
+                <div class="percentage" id="percentage_4"></div>
                 <div class="bar-container">
-                    <div class="bar"></div>
+                    <div class="bar" id="bar_4"></div>
                 </div>
             </div>
         </div>
@@ -120,9 +122,9 @@
         <div class="card">
             <p class="title">Risk of coronary heart disease.</p>
             <div class="progress-container">
-                <div class="percentage">50%</div>
+                <div class="percentage" id="percentage_5"></div>
                 <div class="bar-container">
-                    <div class="bar"></div>
+                    <div class="bar" id="bar_5"></div>
                 </div>
             </div>
         </div>
@@ -136,7 +138,23 @@
             const totalTime = new Date(currentTime - startTime);
             const days = Math.floor(totalTime / 1000 / 60 / 60 / 24);
 
-            milestoneText.innerHTML = `${days} DAYS SMOKE-FREE`;
+            const text = document.getElementById('milestoneText');
+            text.innerHTML = `${days} DAYS SMOKE-FREE`;
+
+            const percentageMap = {
+                1: Math.floor(days / 365 * 100),
+                2: Math.floor(days / 365 / 2 * 100),
+                3: Math.floor(days / 365 / 5 * 100),
+                4: Math.floor(days / 365 / 10 * 100),
+                5: Math.floor(days / 365 / 15 * 100)
+            }
+
+            for (let i = 1; i <= 5; i += 1) {
+                const text = document.getElementById(`percentage_${i}`);
+                const bar = document.getElementById(`bar_${i}`);
+                text.innerHTML = `${percentageMap[i]}%`;
+                bar.style.width = `${percentageMap[i]}%`;
+            }
         }
 
         initTime();
