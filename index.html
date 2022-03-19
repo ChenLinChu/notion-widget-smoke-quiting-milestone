@@ -5,30 +5,127 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <style lang="scss">
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
+        :root {
+            --bg-color: black;
+            --dark-text-color: #fff;
+            --light-text-color: #000;
+        }
+
         * {
+            margin: 0;
+            padding: 0;
             font-family: sans-serif;
-            background-color: transparent;
+            background-color: var(--bg-color);
         }
 
         @media (prefers-color-scheme: dark) {
             * {
-                color: white;
+                color: var(--dark-text-color);
             }
         }
 
         @media (prefers-color-scheme: light) {
             * {
-                color: black;
+                color: var(--light-text-color);
             }
+        }
+
+        .card .title {
+            margin: 0.2rem 0;
+            font-size: 0.8rem;
+        }
+
+        .card .progress-container {
+            display: flex;
+            align-items: center;
+            width: 61.8vw;
+        }
+
+        .card .progress-container .percentage {
+            width: 18%;
+            text-align: center;
+        }
+
+        .card .progress-container .bar-container {
+            position: relative;
+            width: 61.8%;
+            height: 0.2rem;
+            overflow: hidden;
+            border: 1px solid var(--dark-text-color);
+            border-radius: 0.2rem;
+        }
+
+        .card .progress-container .bar-container .bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15%;
+            height: 100%;
+            background-color: var(--dark-text-color);
         }
     </style>
 </head>
 <body>
     <div class="text-container">
         <p class="milestone-text" id="milestoneText"></p>
+
+        <!-- Coughing and shortness of breath decrease. -->
+        <div class="card">
+            <p class="title">Coughing and shortness of breath decrease.</p>
+            <div class="progress-container">
+                <div class="percentage">50%</div>
+                <div class="bar-container">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk of coronary heart disease is half than before. -->
+        <div class="card">
+            <p class="title">Risk of coronary heart disease is half than before.</p>
+            <div class="progress-container">
+                <div class="percentage">50%</div>
+                <div class="bar-container">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk of cancers of the mouth, throat, and voice box (larynx) is half of someone who smokes. -->
+        <div class="card">
+            <p class="title">Risk of cancers of the mouth, throat, and voice box (larynx) is half of someone who smokes.</p>
+            <div class="progress-container">
+                <div class="percentage">50%</div>
+                <div class="bar-container">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk of lung cancer is half of someone who smokes. -->
+        <div class="card">
+            <p class="title">Risk of lung cancer is half of someone who smokes.</p>
+            <div class="progress-container">
+                <div class="percentage">50%</div>
+                <div class="bar-container">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk of coronary heart disease. -->
+        <div class="card">
+            <p class="title">Risk of coronary heart disease.</p>
+            <div class="progress-container">
+                <div class="percentage">50%</div>
+                <div class="bar-container">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -41,6 +138,7 @@
 
             milestoneText.innerHTML = `${days} DAYS SMOKE-FREE`;
         }
+
         initTime();
     </script>
 </body>
