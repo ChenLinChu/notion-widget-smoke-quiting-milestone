@@ -5,8 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .milestone-text {
+            /* font-weight: 900; */
+        }
+    </style>
 </head>
 <body>
+    <div class="text-container">
+        <p class="milestone-text" id="milestoneText"></p>
+    </div>
 
+    <script>
+        const startTime = new Date('2022-01-31 00:00:00').getTime();
+
+        const initTime = () => {
+            const currentTime = new Date().getTime();
+            const totalTime = new Date(currentTime - startTime);
+            const days = Math.floor(totalTime / 1000 / 60 / 60 / 24);
+
+            milestoneText.innerHTML = `${days} DAYS SMOKE-FREE`;
+        }
+
+        initTime();
+    </script>
 </body>
 </html>
