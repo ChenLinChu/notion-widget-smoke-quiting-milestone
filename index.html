@@ -9,9 +9,12 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
         :root {
-            --bg-color: transparent;
+            --bg-color: black;
             --dark-text-color: #fff;
             --light-text-color: #000;
+
+            --bar-bg-color: rgba(255, 255, 255, 0.618);
+            --bar-color: #fff;
         }
 
         * {
@@ -37,6 +40,10 @@
             }
         }
 
+        .milestone-text {
+            margin-bottom: 0.5rem;
+        }
+
         .card .title {
             margin: 0.2rem 0;
             font-size: 0.8rem;
@@ -60,7 +67,7 @@
             width: calc(100% - 2rem);
             height: 0.2rem;
             overflow: hidden;
-            border: 1px solid var(--dark-text-color);
+            background-color: var(--bar-bg-color);
             border-radius: 0.2rem;
         }
 
@@ -76,7 +83,7 @@
 </head>
 <body>
     <div class="app">
-        <p class="milestone-text" id="milestoneText"></p>
+        <h3 class="milestone-text" id="milestoneText"></h3>
 
         <!-- Coughing and shortness of breath decrease. -->
         <div class="card">
