@@ -5,85 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style lang="scss">
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-
-        :root {
-            --bg-color: transparent;
-            --dark-text-color: #fff;
-            --light-text-color: #000;
-
-            --bar-bg-color: rgba(255, 255, 255, 0.618);
-            --bar-color: #fff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-            background-color: var(--bg-color);
-        }
-
-        .app {
-            padding: 0.2rem;
-            max-width: 960px;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            * {
-                color: var(--dark-text-color);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            * {
-                color: var(--light-text-color);
-            }
-        }
-
-        .milestone-text {
-            margin-bottom: 0.5rem;
-        }
-
-        .card {
-            margin-bottom: 0.618rem;
-        }
-
-        .card .title {
-            margin: 0.2rem 0;
-            font-size: 0.8rem;
-        }
-
-        .card .progress-container {
-            display: flex;
-            align-items: center;
-            width: 100%;
-        }
-
-        .card .progress-container .percentage {
-            width: 2rem;
-            padding-right: 0.5rem;
-            text-align: right;
-            font-size: 0.8rem;
-        }
-
-        .card .progress-container .bar-container {
-            position: relative;
-            width: calc(100% - 2rem);
-            height: 0.2rem;
-            overflow: hidden;
-            background-color: var(--bar-bg-color);
-            border-radius: 0.2rem;
-        }
-
-        .card .progress-container .bar-container .bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background-color: var(--dark-text-color);
-        }
+    <style>
+        @import './index.css';
     </style>
 </head>
 <body>
@@ -146,34 +69,6 @@
         </div>
     </div>
 
-    <script>
-        const startTime = new Date('2022/01/31 00:00:00').getTime();
-
-        const initTime = () => {
-            const currentTime = new Date().getTime();
-            const totalTime = new Date(currentTime - startTime);
-            const days = Math.floor(totalTime / 1000 / 60 / 60 / 24);
-
-            const text = document.getElementById('milestoneText');
-            text.innerHTML = `${days} DAYS SMOKE-FREE`;
-
-            const percentageMap = {
-                1: Math.floor(days / 365 * 100),
-                2: Math.floor(days / 365 / 2 * 100),
-                3: Math.floor(days / 365 / 5 * 100),
-                4: Math.floor(days / 365 / 10 * 100),
-                5: Math.floor(days / 365 / 15 * 100)
-            }
-
-            for (let i = 1; i <= 5; i += 1) {
-                const text = document.getElementById(`percentage_${i}`);
-                const bar = document.getElementById(`bar_${i}`);
-                text.innerHTML = `${percentageMap[i]}%`;
-                bar.style.width = `${percentageMap[i]}%`;
-            }
-        }
-
-        initTime();
-    </script>
+    <script src="./index.js"></script>
 </body>
 </html>
