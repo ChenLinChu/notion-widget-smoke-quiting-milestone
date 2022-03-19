@@ -21,6 +21,10 @@
             background-color: var(--bg-color);
         }
 
+        .app {
+            max-width: 50vw;
+        }
+
         @media (prefers-color-scheme: dark) {
             * {
                 color: var(--dark-text-color);
@@ -41,7 +45,7 @@
         .card .progress-container {
             display: flex;
             align-items: center;
-            width: 50%;
+            width: 100%;
         }
 
         .card .progress-container .percentage {
@@ -53,7 +57,7 @@
 
         .card .progress-container .bar-container {
             position: relative;
-            width: 61.8%;
+            width: calc(100% - 2rem);
             height: 0.2rem;
             overflow: hidden;
             border: 1px solid var(--dark-text-color);
