@@ -1,3 +1,4 @@
+let startTime;
 let currentTime;
 let totalDays = 0;
 
@@ -50,6 +51,7 @@ const initPercentage = () => {
     }
 }
 
+startTime = moment(new Date('2022/01/31 00:00:00'));
 currentTime = moment(new Date());
 totalDays = currentTime.diff(startTime, 'days');
 
