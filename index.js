@@ -1,19 +1,27 @@
 const startTime = new Date('2022/01/31 00:00:00').getTime();
+const initFrequency = 1000 * 60; // 1m
 
 const initTime = () => {
     const currentTime = new Date().getTime();
     const totalTime = new Date(currentTime - startTime);
     const days = Math.floor(totalTime / 1000 / 60 / 60 / 24);
 
-    const text = document.getElementById('milestoneText');
-    text.innerHTML = `${days} DAYS SMOKE-FREE`;
+    const dayText = days !== 0 ? `${days}d ` : '';
+    const hourText = totalTime.getUTCHours() !== 0
+        ? `${totalTime.getUTCHours()}h ` : '';
+    const minuteText = totalTime.getUTCMinutes() !== 0
+        ? `${totalTime.getUTCMinutes()}m ` : '';
 
+    const text = document.getElementById('milestoneTime');
+    text.innerHTML = `${dayText}${hourText}${minuteText}ago`;
+
+    const singleYearPercentage = days / 365 * 100;
     const percentageMap = {
-        1: Math.floor(days / 365 * 100),
-        2: Math.floor(days / 365 / 2 * 100),
-        3: Math.floor(days / 365 / 5 * 100),
-        4: Math.floor(days / 365 / 10 * 100),
-        5: Math.floor(days / 365 / 15 * 100)
+        1: Math.floor(singleYearPercentage),
+        2: Math.floor(singleYearPercentage / 2),
+        3: Math.floor(singleYearPercentage / 5),
+        4: Math.floor(singleYearPercentage / 10),
+        5: Math.floor(singleYearPercentage / 15)
     }
 
     for (let i = 1; i <= 5; i += 1) {
@@ -25,3 +33,7 @@ const initTime = () => {
 }
 
 initTime();
+
+setInterval(() => {
+    initTime();
+}, initFrequency);
