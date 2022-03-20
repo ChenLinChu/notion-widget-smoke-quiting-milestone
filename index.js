@@ -50,11 +50,11 @@ const initPercentage = () => {
     }
 }
 
-initMilestone();
-initPercentage();
-
 currentTime = moment(new Date());
 totalDays = currentTime.diff(startTime, 'days');
+
+initMilestone();
+initPercentage();
 
 setInterval(() => {
     initMilestone();
