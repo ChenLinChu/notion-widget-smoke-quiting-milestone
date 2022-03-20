@@ -1,4 +1,3 @@
-const startTime = moment(new Date('2022/01/31 00:00:00'));
 let currentTime;
 let totalDays = 0;
 
@@ -16,6 +15,7 @@ const formatList = Object.keys(formatMap);
 const milestoneTime = document.getElementById('milestoneTime')
 
 const initMilestone = () => {
+    const startTime = moment(new Date('2022/01/31 00:00:00'));
     const currentTime = moment(new Date());
     const textList = [];
 
