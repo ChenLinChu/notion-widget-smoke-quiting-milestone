@@ -1,39 +1,61 @@
-const startTime = new Date('2022/01/31 00:00:00').getTime();
+const startTime = moment(new Date('2022/01/31 00:00:00'));
+let currentTime;
+let totalDays = 0;
+
 const initFrequency = 1000 * 60; // 1m
+const formatMap = {
+    years: 'y',
+    months: 'm',
+    weeks: 'w',
+    days: 'd',
+    hours: 'h',
+    minutes: 'm'
+};
+const formatList = Object.keys(formatMap);
 
-const initTime = () => {
-    const currentTime = new Date().getTime();
-    const totalTime = new Date(currentTime - startTime);
-    const days = Math.floor(totalTime / 1000 / 60 / 60 / 24);
+const milestoneTime = document.getElementById('milestoneTime')
 
-    const dayText = days !== 0 ? `${days}d ` : '';
-    const hourText = totalTime.getUTCHours() !== 0
-        ? `${totalTime.getUTCHours()}h ` : '';
-    const minuteText = totalTime.getUTCMinutes() !== 0
-        ? `${totalTime.getUTCMinutes()}m ` : '';
+const initMilestone = () => {
+    const currentTime = moment(new Date());
+    const textList = [];
 
-    const text = document.getElementById('milestoneTime');
-    text.innerHTML = `${dayText}${hourText}${minuteText}ago`;
+    for(var i = 0; i < formatList.length; i += 1) {
+        const diff = currentTime.diff(startTime, formatList[i]);
 
-    const singleYearPercentage = days / 365 * 100;
+        startTime.add(diff, formatList[i]);
+
+        if (diff !== 0) textList.push(diff + formatMap[formatList[i]]);
+    }
+
+    milestoneTime.innerHTML = `${textList.join(' ')} ago`;
+}
+
+const initPercentage = () => {
+    const singleYearPercentage = totalDays / 365 * 100;
     const percentageMap = {
-        1: Math.floor(singleYearPercentage),
-        2: Math.floor(singleYearPercentage / 2),
-        3: Math.floor(singleYearPercentage / 5),
-        4: Math.floor(singleYearPercentage / 10),
-        5: Math.floor(singleYearPercentage / 15)
+        1: Math.floor(singleYearPercentage),      // 1 years
+        2: Math.floor(singleYearPercentage / 2),  // 2 years
+        3: Math.floor(singleYearPercentage / 5),  // 5 years
+        4: Math.floor(singleYearPercentage / 10), // 10 years
+        5: Math.floor(singleYearPercentage / 15)  // 15 years
     }
 
     for (let i = 1; i <= 5; i += 1) {
         const text = document.getElementById(`percentage_${i}`);
         const bar = document.getElementById(`bar_${i}`);
-        text.innerHTML = `${percentageMap[i]}%`;
-        bar.style.width = `${percentageMap[i]}%`;
+        const percent = `${percentageMap[i]}%`;
+
+        text.innerHTML = percent;
+        bar.style.width = percent;
     }
 }
 
-initTime();
+initMilestone();
+initPercentage();
+
+currentTime = moment(new Date());
+totalDays = currentTime.diff(startTime, 'days');
 
 setInterval(() => {
-    initTime();
+    initMilestone();
 }, initFrequency);
