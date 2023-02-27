@@ -44,9 +44,9 @@ const initPercentage = () => {
     for (let i = 1; i <= 5; i += 1) {
         const text = document.getElementById(`percentage_${i}`);
         const bar = document.getElementById(`bar_${i}`);
-        const percent = `${percentageMap[i]}%`;
+        const percent = `${percentageMap[i] >= 100 ? 100 : percentageMap[i]}%`;
 
-        text.innerHTML = percent > 100 ? 100 : percent;
+        text.innerHTML = percent;
         bar.style.width = percent;
     }
 }
