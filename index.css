@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 :root {
-    --bg-color: transparent;
+    /*--bg-color: transparent;*/
+    --bg-color: black;
     --dark-text-color: #fff;
     --light-text-color: #000;
 
