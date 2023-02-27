@@ -3,6 +3,7 @@ let currentTime;
 let totalDays = 0;
 
 const initFrequency = 1000 * 60; // 1m
+const isIntervalOn = false;
 const formatMap = {
     years: 'y',
     months: 'm',
@@ -13,7 +14,7 @@ const formatMap = {
 };
 const formatList = Object.keys(formatMap);
 
-const milestoneTime = document.getElementById('milestoneTime')
+const milestoneTime = document.getElementById('milestoneTime');
 
 const initMilestone = () => {
     const startTime = moment(new Date('2022/01/31 00:00:00'));
@@ -29,7 +30,7 @@ const initMilestone = () => {
     }
 
     milestoneTime.innerHTML = `${textList.join(' ')} ago`;
-}
+};
 
 const initPercentage = () => {
     const singleYearPercentage = totalDays / 365 * 100;
@@ -39,7 +40,7 @@ const initPercentage = () => {
         3: Math.floor(singleYearPercentage / 5),  // 5 years
         4: Math.floor(singleYearPercentage / 10), // 10 years
         5: Math.floor(singleYearPercentage / 15)  // 15 years
-    }
+    };
 
     for (let i = 1; i <= 5; i += 1) {
         const text = document.getElementById(`percentage_${i}`);
@@ -48,8 +49,8 @@ const initPercentage = () => {
 
         text.innerHTML = percent;
         bar.style.width = percent;
-    }
-}
+    };
+};
 
 startTime = moment(new Date('2022/01/31 00:00:00'));
 currentTime = moment(new Date());
@@ -58,6 +59,8 @@ totalDays = currentTime.diff(startTime, 'days');
 initMilestone();
 initPercentage();
 
-setInterval(() => {
-    initMilestone();
-}, initFrequency);
+if (isIntervalOn) {
+    setInterval(() => {
+        initMilestone();
+    }, initFrequency);
+};
